@@ -32,14 +32,9 @@ export default new Vuex.Store({
 			state.loaded = true;
 		},
 
-		INIT_STATES: (state, payload) => {
-			state.username = payload.username;
-			state.links = payload.links || [];
-		},
-
 		SET: (state, payload) => {
 			Object.keys(payload).forEach(key => {
-				if (!state.getOwnProperty(key)) return;
+				if (!state.hasOwnProperty(key)) return;
 				state[key] = payload[key];
 			});
 		},
@@ -47,15 +42,10 @@ export default new Vuex.Store({
 
 	actions: {
 		async firstLoad({ commit }) {
-			try {
-				chrome.storage.sync.get(["username", "links"], (result) => {
-					commmit("SET", result);
-				});
-			} catch (error) {
-				console.log(error);
-			} finally {
+			chrome.storage.sync.get(["username", "links"], (result) => {
+				commit("SET", result);
 				commit("LOADED");
-			}
+			});
 		},
 
 		set({ commit }, payload) {

@@ -91,8 +91,8 @@ export default {
 
 	data() {
 		return {
-			username: null,
-			links: null,
+			username: undefined,
+			links: undefined,
 			newLinkName: null,
 			newLinkUrl: null,
 		};
@@ -101,7 +101,7 @@ export default {
 	computed: {
 		cUsername: {
 			get() {
-				return this.username || this.$store.state.username;
+				return this.username ?? this.$store.state.username;
 			},
 
 			set(value) {
@@ -111,7 +111,7 @@ export default {
 
 		cLinks: {
 			get() {
-				return this.links || this.$store.state.links;
+				return this.links ?? this.$store.state.links;
 			},
 
 			set(value) {
