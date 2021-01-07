@@ -1,13 +1,9 @@
 <template>
 	<div class="h-screen w-full bg-dark text-white">
-		<template v-if="!$store.state.loaded">
-			loading
-		</template>
-
-		<template v-else>
+		<template v-if="$store.state.loaded">
 			<Options :active.sync="optionsModal" />
 
-			<div class="container mx-auto h-full flex flex-col justify-between py-4">
+			<div class="container mx-auto h-full flex flex-col justify-between py-6">
 				<div class="flex-1">
 					<div class="grid grid-cols-12 gap-4">
 						<div class="col-span-4 text-left">
@@ -47,7 +43,7 @@
 									href="https://github.com/emmanuelvlad/onglet">github</a>
 							</div>
 							<div class="col-span-4 text-center text-comment">
-								onglet 0.1.0
+								onglet {{ chrome.version }}
 							</div>
 							<div class="col-span-4 text-right">
 								<span
@@ -77,6 +73,7 @@ export default {
 	data() {
 		return {
 			optionsModal: false,
+			chrome: chrome.runtime.getManifest(),
 		};
 	},
 

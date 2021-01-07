@@ -2,5 +2,9 @@
   "extName": {
     "message": "onglet",
     "description": ""
+	},
+	"extDescription": {
+    "message": "description...",
+    "description": ""
   }
 }
